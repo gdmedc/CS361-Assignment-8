@@ -30,9 +30,14 @@ while True:
         # Multiply assets by risk factor and sum; Also sum amounts
         riskSum = 0
         amSum = 0
-        for i in range(size):          
-            riskSum += amounts[i] * weights[assetType[i]]
-            amSum += amounts[i]
+        
+        if size > 1:
+            for i in range(size):          
+                riskSum += amounts[i] * weights[assetType[i]]
+                amSum += amounts[i]
+        else:
+            riskSum += amounts * weights[assetType[0]]
+            amSum += amounts
             
         if amSum == 0: amSum = 1         
         # Calculate score and return message
